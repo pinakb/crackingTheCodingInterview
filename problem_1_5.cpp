@@ -1,7 +1,7 @@
 //Problem Statement: Check if the input is a palindrome permutation
 // Input: Tact Coa
 // Output:  True (permutations: "taco cat", "atco cta", etc.)
-// Complexity: O(2n)
+// Complexity: O(3n)
 
 #include<iostream>
 #include<string>
