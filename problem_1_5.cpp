@@ -82,11 +82,11 @@ int main()
 
     if(pp==true)
     {
-        cout<<"\n Input is a palindrome permutation"<<endl;
+        cout<<"\n True"<<endl;
     }
     else
     {
-        cout<<"\n Input is not a palindrome permutation"<<endl;
+        cout<<"\n False"<<endl;
     }
 
 }
