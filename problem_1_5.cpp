@@ -1,92 +1,67 @@
-//Problem Statement: Check if the input is a palindrome permutation
-// Input: Tact Coa
-// Output:  True (permutations: "taco cat", "atco cta", etc.)
-// Complexity: O(3n)
+//Problem Statement: given two input strings, check if edit distance is less than 1
+//example:
+//Input= "pale", "ple"
+//output= true
+//Input= "pale", "bake"
+//output= false
+
+//Complexity O(n + m + m*n)
 
 #include<iostream>
 #include<string>
-#include<algorithm>
-#include<sstream>
-#include<set>
-#include<unordered_map>
+
 using namespace std;
 
 int main()
 {
-    string input;
-    cout<<"Enter the input string: ";
-    getline(cin, input);
-    unordered_map<char,int> order;
-    stringstream str(input);
-    string word;
-    string sequence="";
+    string input1, input2;
+    cout<<"Enter first string: ";
+    cin>>input1;
+    cout<<"Enter second string: ";
+    cin>>input2;
 
-    while(str>>word)
+    int ma =0;
+    int mis=1;
+    int gap=1;
+    int diag;
+    int left;
+    int up;
+
+    int matrix[input1.length()+1][input2.length()+1];
+    matrix[0][0]=0;
+
+    for(int i=0; i<input1.length()+1;i++)
     {
-        sequence+=word;
+        matrix[i][0]=i;
+    }
+    for(int i=0; i<input2.length()+1;i++)
+    {
+        matrix[0][i]=i;
     }
 
-    transform(sequence.begin(), sequence.end(), sequence.begin(),::tolower);
-    set<char> stringSet(sequence.begin(),sequence.end());
-    set<char>::iterator itr;
-
-    for(itr= stringSet.begin(); itr!= stringSet.end();++itr)
+    for(int x=1; x< input1.length()+1;x++)
     {
-        order[*itr]=0;
-    }
-    sort(sequence.begin(), sequence.end());
-
-    unordered_map<char,int>::iterator locator;
-
-    for(int i =0; i<sequence.length(); i++)
-    {
-        locator= order.find(sequence[i]);
-        if(locator== order.end())
+        for(int y=1; y < input2.length()+1; y++)
         {
-            cout<<"not found: "<<sequence[i]<<endl;
-        }
-        else
-        {
-            int value= locator->second;
-            locator->second = value+1;
-        }
-    }
-
-    bool foundOne = false;
-    bool pp = false;
-    for(auto i = order.begin(); i!= order.end(); i++)
-    {
-        int value = i->second;
-        if(value == 1 && foundOne == false)
-        {
-            foundOne= true;
-        }
-        else if( value == 1 && foundOne == true)
-        {
-            pp=false;
-            break;
-        }
-        else if (value!= 1)
-        {
-            if(value%2 ==0)
+            if(input1[x-1]==input2[y-1])
             {
-                pp = true;
+                diag = matrix[x-1][y-1] + ma;
             }
             else
             {
-                pp = false;
-                break;
+                diag = matrix[x-1][y-1] + mis;
             }
+            left = matrix[x][y-1] + gap;
+            up = matrix[x-1][y] + gap;
+            matrix[x][y] = min( min(diag,left),up);
         }
     }
-
-    if(pp==true)
+    if(matrix[input1.length()][input2.length()] <=1)
     {
-        cout<<"\n True"<<endl;
+        cout<<"true"<<endl;
     }
     else
     {
-        cout<<"\n False"<<endl;
+        cout<<"false"<<endl;
     }
-
 }

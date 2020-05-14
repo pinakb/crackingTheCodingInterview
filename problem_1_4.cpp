@@ -1,46 +1,92 @@
-//Problem Statement: given two input strings, check if edit distance is less than 1
-//example:
-//Input= "pale", "ple"
-//output= true
-//Input= "pale", "bake"
-//output= false
+//Problem Statement: Check if the input is a palindrome permutation
+// Input: Tact Coa
+// Output:  True (permutations: "taco cat", "atco cta", etc.)
+// Complexity: O(3n)
 
 #include<iostream>
-#include<algorithm>
 #include<string>
+#include<algorithm>
+#include<sstream>
 #include<set>
-
+#include<unordered_map>
 using namespace std;
 
 int main()
 {
-    string first, second;
-    cout<<"Enter first string: ";
-    cin>>first;
-    cout<<"Enter second string: ";
-    cin>>second;
-    string great;
-    set<char> s1(first.begin(), first.end());
-    set<char> s2(second.begin(), second.end());
+    string input;
+    cout<<"Enter the input string: ";
+    getline(cin, input);
+    unordered_map<char,int> order;
+    stringstream str(input);
+    string word;
+    string sequence="";
+
+    while(str>>word)
+    {
+        sequence+=word;
+    }
+
+    transform(sequence.begin(), sequence.end(), sequence.begin(),::tolower);
+    set<char> stringSet(sequence.begin(),sequence.end());
     set<char>::iterator itr;
 
-    if(first.length()>second.length())
-        great = first;
-    else
-        great= second;
+    for(itr= stringSet.begin(); itr!= stringSet.end();++itr)
+    {
+        order[*itr]=0;
+    }
+    sort(sequence.begin(), sequence.end());
 
-    for(itr= s2.begin(); itr!= s2.end(); ++itr)
+    unordered_map<char,int>::iterator locator;
+
+    for(int i =0; i<sequence.length(); i++)
     {
-        s1.insert(*itr);
+        locator= order.find(sequence[i]);
+        if(locator== order.end())
+        {
+            cout<<"not found: "<<sequence[i]<<endl;
+        }
+        else
+        {
+            int value= locator->second;
+            locator->second = value+1;
+        }
     }
-    int counter=0;
-    for(itr= s1.begin(); itr!= s1.end(); ++itr)
+
+    bool foundOne = false;
+    bool pp = false;
+    for(auto i = order.begin(); i!= order.end(); i++)
     {
-        counter++;
+        int value = i->second;
+        if(value == 1 && foundOne == false)
+        {
+            foundOne= true;
+        }
+        else if( value == 1 && foundOne == true)
+        {
+            pp=false;
+            break;
+        }
+        else if (value!= 1)
+        {
+            if(value%2 ==0)
+            {
+                pp = true;
+            }
+            else
+            {
+                pp = false;
+                break;
+            }
+        }
     }
-    if( (counter-great.length()) <=1)
-        cout<<"True"<<endl;
+
+    if(pp==true)
+    {
+        cout<<"\n True"<<endl;
+    }
     else
-        cout<<"False"<<endl;
+    {
+        cout<<"\n False"<<endl;
+    }
 
 }
