@@ -1,4 +1,4 @@
-//Roatate matrix by 90 degrees.
+//Rotate matrix by 90 degrees.
 //Solution is for Anti-clockwise rotation.
 //Input: Dimension N of matrix. (Matrix will be auto populated)
 //Output: Rotated matrix

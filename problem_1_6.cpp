@@ -1,6 +1,10 @@
+//Compress string
+//Input example: aaaabbbcccd
+//Output: a4b3c3d1
+//Complexity = O(n)
+
 #include<iostream>
 #include<set>
-#include<queue>
 #include<string>
 #include<sstream>
 using namespace std;
