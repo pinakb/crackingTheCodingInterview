@@ -9,6 +9,7 @@ struct node
 
 };
 
+//STACK
 class myStack
 {
     public:
@@ -65,6 +66,7 @@ bool myStack::isEmpty()
     return top == NULL;
 }
 
+//QUEUE
 class myQueue
 {
     public:
@@ -151,7 +153,9 @@ int main()
     cout<<"new Peek: "<<pTop->data<<endl;
 
     //Queue Operations
+
     cout<<"\nqueue operations."<<endl;
+    cout<<"sample input: 1,2,3,4,5"<<endl;
     myQueue q;
     q.add(1);
     q.add(2);
@@ -163,6 +167,12 @@ int main()
     node* rItem= q.removeItem();
     cout<<"Item Removed: "<<rItem->data<<endl;
     qFirst= q.peek();
-    cout<<"first in queue: "<<qFirst->data<<endl;
+    if(qFirst==NULL)
+    {
+        cout<<"stack is empty"<<endl;
+    }
+    else
+        cout<<"first in queue: "<<qFirst->data<<endl;
+    cout<<"last: "<<q.last->data<<endl;
 
 }
