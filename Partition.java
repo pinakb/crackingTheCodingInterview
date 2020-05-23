@@ -1,7 +1,6 @@
 package com.java.code.roop.two;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
