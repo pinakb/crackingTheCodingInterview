@@ -1,71 +1,45 @@
 package com.java.code.roop.three;
 
-public class QueueViaStacks extends QueueStack {
-	static int stackSize = 6;
+import java.util.Stack;
 
-	public QueueViaStacks(int s) {
-		super(s);
-	}
+public class QueueViaStacks extends QueueStack {
 
 	public static void main(String[] args) {
-		QueueViaStacks stack1 = new QueueViaStacks(stackSize);
-		stack1.push(1);
-		stack1.push(2);
-		stack1.push(3);
-		stack1.push(4);
-		stack1.push(5);
-		stack1.push(6);
-		QueueViaStacks stack2 = new QueueViaStacks(stackSize);
-		for (int i = 0; i < stackSize; i++) {
-			stack2.push(stack1.pop());
-		}
+		QueueViaStacks stackQueue = new QueueViaStacks();
+		stackQueue.enqueue(1);
+		stackQueue.enqueue(2);
+		stackQueue.enqueue(3);
+		System.out.println(stackQueue.dequeue());
+		stackQueue.enqueue(4);
+		stackQueue.enqueue(5);
+		stackQueue.enqueue(6);
+		System.out.println(stackQueue.dequeue());
+		System.out.println(stackQueue.dequeue());
 	}
 }
 
 class QueueStack {
-	int stackize;
-	int[] stackArray;
-	int top;
+	Stack<Integer> s1 = new Stack<Integer>();
+	Stack<Integer> s2 = new Stack<Integer>();
 
-	public QueueStack(int s) {
-		stackize = s;
-		stackArray = new int[stackize];
-		top = -1;
+	public void enqueue(int num) {
+		while (!s1.isEmpty())
+			s2.push(s1.pop());
+
+		s1.push(num);
+
+		while (!s2.isEmpty())
+			s1.push(s2.pop());
 	}
 
-	public void push(int num) {
-		if (isFull())
-			System.out.println("Stack is Full");
-		else {
-			stackArray[++top] = num;
-			System.out.println("Pushed - " + num);
+	public int dequeue() {
+		if (s1.isEmpty()) {
+			System.out.println("Queue is Empty");
+			System.exit(0);
 		}
-	}
 
-	public int pop() {
-		int pop = 0;
-		if (isEmpty())
-			System.out.println("Stack is Empty");
-		else {
-			pop = stackArray[top--];
-			System.out.println("Popped - " + pop);
-		}
-		return pop;
-	}
-
-	public void peek() {
-		if (isEmpty()) {
-			System.out.println("Stack is Empty");
-		}
-		int peek = stackArray[top];
-		System.out.println("Peeked - " + peek);
-	}
-
-	public boolean isEmpty() {
-		return (top == -1);
-	}
-
-	public boolean isFull() {
-		return (top == stackize - 1);
+		int num = s1.peek();
+		s1.pop();
+		return num;
 	}
 }
