@@ -11,20 +11,36 @@ public class Intersection {
 		SLNode node4 = new SLNode(3);
 		SLNode node5 = new SLNode(6);
 
-		node.next = node1;
+		SLNode intersect = node1;
+		
+		node.next = intersect;
 		node1.next = node2;
+		node2.next = null;
 
 		node3.next = node4;
-		node4.next = node5;
-		node5.next = node1;
-		node1.next = node5;
-		
-		if (node.next == node5.next) {
+		node4.next = intersect;
+		intersect.next = node5;
+		node5.next = null;
+
+		boolean isIntersecting = isIntersecting (node, node3);
+		if (isIntersecting)
 			System.out.println("Linked lists are intersectiing.");
-		} else {
+		else
 			System.out.println("Linked lists are not intersectiing.");
-		}
 	}
+	
+	private static boolean isIntersecting(SLNode nodeOne, SLNode nodeTwo) {
+		while (nodeOne.next != null) {
+			while (nodeTwo.next != null) {
+				if (nodeOne.next == nodeTwo.next)
+					return true;
+				nodeTwo = nodeTwo.next;
+			}
+			nodeOne = nodeOne.next;
+		}
+		return false;
+	}
+
 }
 
 class SLNode {
