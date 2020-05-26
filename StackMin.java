@@ -63,6 +63,9 @@ public class StackMin extends MinStack {	//extends Stack<Integer> {
 		System.out.println("Minimum  - " +stack.getMinNum());
 		stack.push(2);
 		System.out.println("Minimum  - " +stack.getMinNum());
+		for (int i =0;i<stack.stackArray.length;i++) {
+			System.out.println(stack.stackArray[i]);
+		}
 	}
 
 }
