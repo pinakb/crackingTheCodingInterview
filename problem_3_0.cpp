@@ -1,4 +1,4 @@
-//Implementing Stack class using linked list
+//Implementing Stack class and Queue class using linked list
 #include<iostream>
 using namespace std;
 
