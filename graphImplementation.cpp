@@ -42,14 +42,14 @@ int main()
     int V =6;
     vector<int> adj[V];
 
-    directed(adj, 0,1);
-    directed(adj, 0,4);
-    addEdge(adj, 0,5);
-    addEdge(adj, 1,4);
-    addEdge(adj, 1,2);
-    addEdge(adj, 1,3);
-    addEdge(adj, 2,3);
-    addEdge(adj, 3,4);
-    addEdge(adj, 4,5);
+    undirected(adj, 0,1);
+    undirected(adj, 0,4);
+    undirected(adj, 0,5);
+    undirected(adj, 1,4);
+    undirected(adj, 1,2);
+    undirected(adj, 1,3);
+    undirected(adj, 2,3);
+    undirected(adj, 3,4);
+    undirected(adj, 4,5);
     displayNeighbours(adj,V);
 }
