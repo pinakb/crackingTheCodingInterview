@@ -1,4 +1,4 @@
-package com.java.code.roop;
+package com.java.code.roop.one;
 
 public class RotateMatrix {
 

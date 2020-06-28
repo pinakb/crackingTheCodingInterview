@@ -1,4 +1,4 @@
-package com.java.code.roop;
+package com.java.code.roop.one;
 
 import java.util.HashSet;
 import java.util.Scanner;

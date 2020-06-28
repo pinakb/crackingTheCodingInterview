@@ -1,4 +1,4 @@
-package com.java.code.roop;
+package com.java.code.roop.one;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -25,6 +25,7 @@ public class Compression {
 					count = 0;
 				}
 			}
+			
 			if (count > 0)
 				finalStr.append(strArr[string1.length() - 1]).append(++count);
 
